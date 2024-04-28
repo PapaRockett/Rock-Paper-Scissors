@@ -1,10 +1,17 @@
 let humanScore = 0;
 let computerScore = 0;
+const choiceButtons = document.querySelectorAll(".choiceBtn");
+
+choiceButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const humanSelection = button.textContent;
+    // Makes more sense to call this here, when human also makes their choice
+    const computerSelection = getComputerChoice();
+    playRound(humanSelection, computerSelection);
+  });
+});
 
 function playRound(humanChoice, computerChoice) {
-  // Bad things happen if these get called here! See playGame() comment
-  // getHumanChoice();
-  // getComputerChoice();
   console.log("Human:", humanChoice);
   console.log("Computer:", computerChoice);
   switch (humanChoice) {
@@ -65,34 +72,22 @@ function getComputerChoice() {
   return choices[Math.floor(Math.random() * choices.length)];
 }
 
-function getHumanChoice() {
-  const choice = prompt("What's your choice?");
+// function playGame() {
+//   for (let i = 1; i < 6; i++) {
+//     console.log("Round:", i);
+//     // Important that these variables and function calls are here and nowhere else, otherwise user will get prompted without the result being used
+//     const humanSelection = getHumanChoice();
+//     const computerSelection = getComputerChoice();
+//     playRound(humanSelection, computerSelection);
+//     console.log(`Human: ${humanScore}, Computer: ${computerScore}`);
+//   }
+//   if (humanScore > computerScore) {
+//     console.log("You won the game!");
+//   } else if (humanScore < computerScore) {
+//     console.log("You lost the game!");
+//   } else {
+//     console.log("It's a tie!");
+//   }
+// }
 
-  // Will need better validation than this
-  if (choice === null) {
-    return "rock";
-  }
-
-  // Just so any variation of the word can be input
-  return choice.toLowerCase();
-}
-
-function playGame() {
-  for (let i = 1; i < 6; i++) {
-    console.log("Round:", i);
-    // Important that these variables and function calls are here and nowhere else, otherwise user will get prompted without the result being used
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-    console.log(`Human: ${humanScore}, Computer: ${computerScore}`);
-  }
-  if (humanScore > computerScore) {
-    console.log("You won the game!");
-  } else if (humanScore < computerScore) {
-    console.log("You lost the game!");
-  } else {
-    console.log("It's a tie!");
-  }
-}
-
-playGame();
+// playGame();
