@@ -1,31 +1,33 @@
 let humanScore = 0;
 let computerScore = 0;
 const choiceButtons = document.querySelectorAll(".choiceBtn");
+const resultsDisplay = document.querySelector(".resultsDisplay");
 
 choiceButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const humanSelection = button.textContent;
-    // Makes more sense to call this here, when human also makes their choice
+    // the resultsDisplay textContent wasn't being updated until I added .toLowerCase(),
+    // makes sense when you look at the switch statements in playRound()
+    const humanSelection = button.textContent.toLowerCase();
+    // Makes more sense to call getComputerChoice() here, when human also makes their choice,
+    // but could it still be improved?
     const computerSelection = getComputerChoice();
     playRound(humanSelection, computerSelection);
   });
 });
 
 function playRound(humanChoice, computerChoice) {
-  console.log("Human:", humanChoice);
-  console.log("Computer:", computerChoice);
   switch (humanChoice) {
     case "rock":
       switch (computerChoice) {
         case "rock":
-          console.log("It's a tie. You both chose Rock.");
+          resultsDisplay.textContent = "It's a tie. You both chose Rock.";
           break;
         case "paper":
-          console.log("You lose! Paper beats Rock.");
+          resultsDisplay.textContent = "You lose! Paper beats Rock.";
           computerScore++;
           break;
         case "scissors":
-          console.log("You win! Rock beats Scissors.");
+          resultsDisplay.textContent = "You win! Rock beats Scissors.";
           humanScore++;
           break;
       }
@@ -34,14 +36,14 @@ function playRound(humanChoice, computerChoice) {
     case "paper":
       switch (computerChoice) {
         case "rock":
-          console.log("You win! Paper beats Rock");
+          resultsDisplay.textContent = "You win! Paper beats Rock";
           humanScore++;
           break;
         case "paper":
-          console.log("It's a tie. You both chose Paper");
+          resultsDisplay.textContent = "It's a tie. You both chose Paper";
           break;
         case "scissors":
-          console.log("You lose! Scissors Beats Paper");
+          resultsDisplay.textContent = "You lose! Scissors Beats Paper";
           computerScore++;
           break;
       }
@@ -50,15 +52,15 @@ function playRound(humanChoice, computerChoice) {
     case "scissors":
       switch (computerChoice) {
         case "rock":
-          console.log("You lose! Rock beats Scissors.");
+          resultsDisplay.textContent = "You lose! Rock beats Scissors.";
           computerScore++;
           break;
         case "paper":
-          console.log("You win! Scissors beats Paper.");
+          resultsDisplay.textContent = "You win! Scissors beats Paper.";
           humanScore++;
           break;
         case "scissors":
-          console.log("It's a tie. You both chose Scissors.");
+          resultsDisplay.textContent = "It's a tie. You both chose Scissors.";
           break;
       }
       break;
