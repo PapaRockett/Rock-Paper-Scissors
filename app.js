@@ -2,6 +2,7 @@ let humanScore = 0;
 let computerScore = 0;
 const choiceButtons = document.querySelectorAll(".choiceBtn");
 const resultsDisplay = document.querySelector(".resultsDisplay");
+const scoreDisplay = document.querySelector(".scoreDisplay");
 
 choiceButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -65,6 +66,8 @@ function playRound(humanChoice, computerChoice) {
       }
       break;
   }
+
+  scoreDisplay.textContent = `You: ${humanScore} | AI: ${computerScore}`;
 }
 
 function getComputerChoice() {
