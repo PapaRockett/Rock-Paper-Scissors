@@ -68,6 +68,18 @@ function playRound(humanChoice, computerChoice) {
   }
 
   scoreDisplay.textContent = `You: ${humanScore} | AI: ${computerScore}`;
+
+  checkScore();
+}
+
+function checkScore() {
+  if (humanScore == 5 || computerScore == 5) {
+    if (humanScore > computerScore) {
+      alert("You won the game!");
+    } else {
+      alert("You lost the game!");
+    }
+  }
 }
 
 function getComputerChoice() {
@@ -76,23 +88,3 @@ function getComputerChoice() {
   // And then using Math.floor to get the index of the array, rather than just a random, irrelevant number
   return choices[Math.floor(Math.random() * choices.length)];
 }
-
-// function playGame() {
-//   for (let i = 1; i < 6; i++) {
-//     console.log("Round:", i);
-//     // Important that these variables and function calls are here and nowhere else, otherwise user will get prompted without the result being used
-//     const humanSelection = getHumanChoice();
-//     const computerSelection = getComputerChoice();
-//     playRound(humanSelection, computerSelection);
-//     console.log(`Human: ${humanScore}, Computer: ${computerScore}`);
-//   }
-//   if (humanScore > computerScore) {
-//     console.log("You won the game!");
-//   } else if (humanScore < computerScore) {
-//     console.log("You lost the game!");
-//   } else {
-//     console.log("It's a tie!");
-//   }
-// }
-
-// playGame();
